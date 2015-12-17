@@ -1,0 +1,22 @@
+{
+  "name": "nexio_manager",
+  "version": "0.0.1",
+  "description": "Log and Monitoring Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2XL/Nexio-manager.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "chenglong zou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2XL/Nexio-manager/issues"
+  },
+  "homepage": "https://github.com/2XL/Nexio-manager#readme"
+}
