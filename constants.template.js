@@ -7,17 +7,19 @@ function define(name, value) {
 
 define("PI", 3.14);
 define("mysql", {
-    server: {
+    login: {
         host: 'localhost',
-        port: 8086,
-        username: 'root',
-        password: 'root',
-        database: 'metrics',
-    },
-    db: {
-        name: 'metrics',
-        user: 'test',
-        pass: 'test'
+        user: 'me',
+        password: 'secret',
+        database: 'my_db'
     }
-
 });
+
+define("papertrail", {
+    login: {
+        username: "user",
+        password: "pass"
+    }
+});
+
+
