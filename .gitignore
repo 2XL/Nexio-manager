@@ -3,3 +3,4 @@ x.*
 node_modules
 bower_components
 constants.js
+npm-debug.log

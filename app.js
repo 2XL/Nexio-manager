@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var jQuery = require("bootstrap");
+
 var app = express();
 
 // view engine setup
