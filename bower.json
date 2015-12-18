@@ -1,0 +1,29 @@
+{
+  "name": "nexio_manager",
+  "description": "Log and Monitoring Server",
+  "main": "index.js",
+  "authors": [
+    "chenglong zou"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "nodejs"
+  ],
+  "homepage": "https://github.com/2XL/Nexio-manager",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6"
+  }
+}

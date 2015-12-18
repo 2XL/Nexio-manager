@@ -1,4 +1,5 @@
 .idea
 x.*
 node_modules
+bower_components
 constants.js

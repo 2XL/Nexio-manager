@@ -2,6 +2,25 @@ doctype html
 html
   head
     title= title
+
+    // style
+    link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    // script
+    script(src='/lib/bootstrap/dist/js/bootstrap.min.js')
+    script(src='/lib/ajax/jquery.min.js')
+
+    // cdn
+    // script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+
+
+
+    block script
+    block style
+
   body
     block content
+    block scriptBody
