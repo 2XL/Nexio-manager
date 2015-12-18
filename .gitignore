@@ -1,2 +1,4 @@
 .idea
 x.*
+node_modules
+constants.js
