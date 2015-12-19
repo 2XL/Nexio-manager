@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var paper = require('./routes/papertrail');
+
+var restPaper = require('./routes/apiPapertrail');
+var restMysql = require('./routes/apiMysql');
 
 var app = express();
 
@@ -26,7 +28,9 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/paper', paper);
+
+app.use('/paper', restPaper);
+app.use('/mysql', restMysql);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

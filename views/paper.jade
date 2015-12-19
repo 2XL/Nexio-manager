@@ -7,13 +7,36 @@ block script
         console.log("paper search - api testing");
         // here goes my ng controllers
 
+
+        // *** APP
+
         var app = angular.module('nexio', [
             'ngRoute',
             'ngResource'
         ]);
 
 
-        app.factory('Events', ['$resource', function($resource){
+        // *** ANIMATIONS
+
+
+
+
+        // *** CONTROLLERS
+
+        app.controller('listEventsCtrl', ['$scope',
+            function ($scope) {
+                // feed this with my rest api json response.
+                $scope.events = [];
+                var query = "program:apache";
+                console.log("listEventsCtrl");
+            }])
+
+        // *** FILTERS
+
+
+        // *** SERVICES
+        app.factory('Events', ['$resource', function ($resource) {
+            console.log("factoryEvents");
             return $resource('paper', {}, {
                 query: {
                     method: 'POST',
@@ -24,15 +47,6 @@ block script
             });
         }]);
 
-        app.controller('listEventsCtrl', ['$scope',
-            function ($scope) {
-                // feed this with my rest api json response.
-                $scope.events = [];
-                var query = "program:apache";
-
-                console.log("ASDF");
-
-            }])
 
 block style
     style.
@@ -53,4 +67,3 @@ block content
             .events(ng-view)
 
 
-block scriptBody

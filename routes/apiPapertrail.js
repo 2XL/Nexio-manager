@@ -40,13 +40,7 @@ router.post('/', function (req, res, next) {
 
         // afegir aixo com api rest.
 
-        // todo parse to query
-
-        var queryList = [
-            'program:apache'
-        ];
-
-        var query = {q: queryList[0]};
+        var query = {q: req.query};
         var event = yield trail.searchEvents(query);
         assert(typeof event === 'object');
         /*
