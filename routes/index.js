@@ -6,4 +6,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Nexio-Manager' });
 });
 
+
+router.get('/dashboard', function(req, res, next){
+  res.render('dashboard', {title: 'Nexio-Dashboard'})
+})
+
+
 module.exports = router;
+

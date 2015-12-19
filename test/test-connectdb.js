@@ -19,9 +19,6 @@ connection.query(query, function( err, rows, fields){
         console.log(item);
     });
 });
-
-
-
 connection.end();
 
 

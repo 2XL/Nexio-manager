@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
     // res.render('index', { title: 'Nexio-Manager' });
     console.log("papertrail: get", req.query);
 
-    res.render('paper', {title: 'Papertrail-api:get'});
+    res.render('paper', {title: 'Papertrail-API'});
 
 });
 
