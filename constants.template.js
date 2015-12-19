@@ -16,9 +16,9 @@ define("mysql", {
 });
 
 define("papertrail", {
-    login: {
-        username: "user",
-        password: "pass"
+    profile: {
+        token: "XXX",
+        baseUrl: "https://papertrailapp.com/api/v1/" //
     }
 });
 

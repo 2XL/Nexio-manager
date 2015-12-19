@@ -1,0 +1,56 @@
+extends layout
+block script
+    script(src='/angular/angular.js')
+    script(src='/angular-route/angular-route.js')
+    script(src='/angular-resource/angular-resource.js')
+    script.
+        console.log("paper search - api testing");
+        // here goes my ng controllers
+
+        var app = angular.module('nexio', [
+            'ngRoute',
+            'ngResource'
+        ]);
+
+
+        app.factory('Events', ['$resource', function($resource){
+            return $resource('paper', {}, {
+                query: {
+                    method: 'POST',
+                    params: {
+                        q: "apache"
+                    }
+                }
+            });
+        }]);
+
+        app.controller('listEventsCtrl', ['$scope',
+            function ($scope) {
+                // feed this with my rest api json response.
+                $scope.events = [];
+                var query = "program:apache";
+
+                console.log("ASDF");
+
+            }])
+
+block style
+    style.
+        body {
+            background-color: black;
+            color: whitesmoke;
+            margin: 10px;
+            padding: 10px;
+        }
+
+block content
+    h1= title
+    p Welcome to #{title}
+    .dashboard(ng-app="nexio")
+        p Nothing here {{'yet' + '!'}}
+        p 1 + 2 = {{ 1 + 2 }}
+        .controller(ng-controller='listEventsCtrl')
+            .events(ng-view)
+
+
+block scriptBody
