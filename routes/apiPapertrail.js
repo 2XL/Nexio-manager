@@ -39,8 +39,8 @@ router.post('/', function (req, res, next) {
         var trail = new Client(constants.papertrail.profile);
 
         // afegir aixo com api rest.
-
-        var query = {q: req.query};
+        console.log(req.headers.query);
+        var query = {q: req.headers.query};
         var event = yield trail.searchEvents(query);
         assert(typeof event === 'object');
         /*
@@ -67,14 +67,15 @@ router.post('/', function (req, res, next) {
          message: log message (string)
 
          */
-        result = event;
+        console.log(event.events.length)
+        result = event.events;
 
     })
     (function (err) {
         if (err){
             console.error(err);
         }else{
-
+            console.log(result.length);
         }
         res.json(result);
 

@@ -5,35 +5,16 @@ block script
     script(src='/angular-resource/angular-resource.js')
     script(src='/angular-animate/angular-animate.js')
     script.
-        console.log("paper search - api testing");
-        // here goes my ng controllers
-        // *** APP
-        var app = angular.module('nexio', [
-            'ngRoute',
-            'ngResource'
-        ]);
-        // *** ANIMATIONS
-        // *** CONTROLLERS
-        app.controller('listEventsCtrl', ['$scope',
-            function ($scope) {
-                // feed this with my rest api json response.
-                $scope.events = [];
-                var query = "program:apache";
-                console.log("listEventsCtrl");
-            }])
-        // *** FILTERS
-        // *** SERVICES
-        app.factory('Events', ['$resource', function ($resource) {
-            console.log("factoryEvents");
-            return $resource('paper', {}, {
-                query: {
-                    method: 'POST',
-                    params: {
-                        q: "apache"
-                    }
-                }
-            });
-        }]);
+        console.log("dashboard");
+        //
+        // *** APP - MODULES
+        //
+    script(src='/app/js/app.js')
+    script(src='/app/js/controllers.js')
+    script(src='/app/js/services.js')
+    script(src='/app/js/animations.js')
+    script(src='/app/js/directives.js')
+
 block style
     style.
         body {
@@ -48,5 +29,5 @@ block content
     .dashboard(ng-app="nexio")
         p Nothing here {{'yet' + '!'}}
         p 1 + 2 = {{ 1 + 2 }}
-        .controller(ng-controller='listEventsCtrl')
+        .controller(ng-controller='eventListCtrl')
             .events(ng-view)
