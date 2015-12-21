@@ -13,10 +13,20 @@ router.get('/', function (req, res, next) {
 
 /* POST */
 router.post('/', function (req, res, next) {
+
+    // post query index
     var connection = new mysql.createConnection(constants.mysql.login);
-    console.log("mysql: post", req.headers.query);
+
+    var query = constants.mysql.query.queryLvlUser;
+
+    console.log("mysql: post...", req.headers.query);
     var result;
-    var query = req.headers.query;
+
+    if(req.headers.query == undefined){
+        // use the test query
+    }else{
+        query = req.headers.query;
+    }
     connection.connect();
     connection.query(query, function (err, rows, fields) {
         if (err) throw err;
@@ -26,6 +36,8 @@ router.post('/', function (req, res, next) {
     });
     connection.end();
 });
+
+
 
 module.exports = router;
 

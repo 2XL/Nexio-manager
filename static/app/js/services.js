@@ -18,3 +18,16 @@ services.factory('Events', ['$resource',
             }
         });
     }]);
+
+services.factory('Users', ['$resource',
+    function($resource){
+        console.log("factoryUsers");
+        return $resource('mysql', {}, {
+            query: {
+                method: 'POST',
+                params : {query : "show tables"},
+
+            }
+        })
+    }
+]);

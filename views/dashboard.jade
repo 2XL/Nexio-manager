@@ -4,6 +4,9 @@ block script
     script(src='/angular-route/angular-route.js')
     script(src='/angular-resource/angular-resource.js')
     script(src='/angular-animate/angular-animate.js')
+    script(src='/Chart.js/Chart.js')
+    script(src='/angular-chart.js/angular-chart.js')
+    script(src='/angular-bootstrap/ui-bootstrap-tpls.js')
     script.
         console.log("dashboard");
         //
@@ -16,6 +19,8 @@ block script
     script(src='/app/js/directives.js')
 
 block style
+    link(rel="stylesheet" href="/angular-chart.js/dist/angular-chart.css")
+    link(rel="stylesheet" href="/angular-bootstrap/ui-bootstrap-csp.css")
     style.
         body {
             background-color: black;
@@ -29,5 +34,23 @@ block content
     .dashboard(ng-app="nexio")
         p Nothing here {{'yet' + '!'}}
         p 1 + 2 = {{ 1 + 2 }}
+
+        .controller(ng-controller='TabsDemoCtrl')
+            p select a tab:
+            p
+                button(type="button" class="btn btn-default btn-sm" ng-click="tabs[0].active = true") Select second tab
+                button(type="button" class="btn btn-default btn-sm" ng-click="tabs[1].active = true") Select third tab
+            p
+                button(type="button" class="btn btn-default btn-sm" ng-click="tabs[1].disibled = ! tabs[1].disibled") Enable/Disible third tab
+            uib-tabset
+                uib-tab(heading="Static title") Global Graph
+                uib-tab(ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disibled="tab.disibled") {{ tab.content }}
+                //
+                    uib-tab(select="alertMe()")
+                        uib-tab-heading
+                            i.glyphicon.glyphicon-bell Alert!
+                        p I've got an html heading and a select callback
+
         .controller(ng-controller='eventListCtrl')
-            .events(ng-view)
+        .controller(ng-controller='userListCtrl')
+        .events(ng-view)

@@ -12,6 +12,12 @@ define("mysql", {
         user: 'me',
         password: 'secret',
         database: 'my_db'
+    },
+    query: {
+        queryName1: "",
+        queryName2: "",
+        queryName3: "",
+        queryName4: ""
     }
 });
 
