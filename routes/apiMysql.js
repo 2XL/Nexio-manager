@@ -17,7 +17,8 @@ router.post('/', function (req, res, next) {
     // post query index
     var connection = new mysql.createConnection(constants.mysql.login);
 
-    var query = constants.mysql.query.queryLvlUser;
+    // var query = constants.mysql.query.queryLvlUser;
+    var query = constants.mysql.query.queryLvlGroup;
 
     console.log("mysql: post...", req.headers.query);
     var result;

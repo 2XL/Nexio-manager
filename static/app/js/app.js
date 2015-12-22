@@ -21,9 +21,17 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/app/partials/event-list.html',
             controller: 'eventListCtrl'
         }).
-        when('/dashboard/list', {
+        when('/dashboard/bar', {
             templateUrl: '/app/partials/chart/bar.html',
-            controller: 'userListCtrl'
+            controller: 'barCtrl'
+        }).
+        when('/dashboard/doughnut', {
+            templateUrl: '/app/partials/chart/doughnut.html',
+            controller: 'doughnutCtrl'
+        }).
+        when('/dashboard/radar', {
+            templateUrl: '/app/partials/chart/radar.html',
+            controller: 'radarCtrl'
         }).
         /*
          when('/dashboard/:query', {
