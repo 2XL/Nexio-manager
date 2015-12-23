@@ -1,0 +1,17 @@
+extends layout
+
+block style
+    style.
+        body {
+            background-color: black;
+            color: whitesmoke;
+            margin: 10px;
+            padding: 10px;
+        }
+
+block content
+    h1= title
+    p Welcome to #{title}
+    .dashboard(ng-app="nexio")
+
+

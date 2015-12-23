@@ -161,10 +161,20 @@ controllers.controller("radarCtrl", function ($scope) {
     ];
 
 
+});
+
+//
+controllers.controller("reactiveCtrl", function ($scope) {
 
 
+    $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales", "Tele Sales", "Corporate Sales"];
+    $scope.data = [300, 500, 100, 40, 120];
+    $scope.type = 'PolarArea';
 
-
+    $scope.toggle = function () {
+        $scope.type = $scope.type === 'PolarArea' ?
+            'Pie' : 'PolarArea';
+    };
 
 
 });

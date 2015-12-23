@@ -33,6 +33,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/app/partials/chart/radar.html',
             controller: 'radarCtrl'
         }).
+        when('/dashboard/reactive', {
+            templateUrl: '/app/partials/chart/reactive.html',
+            controller: 'reactiveCtrl'
+        }).
         /*
          when('/dashboard/:query', {
          templateUrl: '/templates/event-detail.html',

@@ -14,29 +14,31 @@ var dataIdx = 0;
 // walker options
 var walker = walk.walk('../logs/load', {followLings: false});
 
+var schemaName = 'xxxes';
 
 var mongoose = require('mongoose');
 // var tsv = require();
 var eventSchema = mongoose.Schema({
-    id: {
+    idx: {
         type: String,
         index: {
             unique: true
         }
     }, // this will be considered primary key
-    received_at: String,
+    // received_at: String,
     generated_at: String,
 
     // display_received_at: String,
-    source_id: String,
-    source_name: String,
+    //source_id: String,
+    //source_name: String,
     source_ip: String,
     program: String,
     // hostname: String,
     facility: String,
     //
-    severity: String,
-    message: String,
+    //severity: String,
+    // message: String,
+    module: String,
 });
 
 
@@ -44,41 +46,58 @@ console.log("Connection OK");
 var csvStream = csv({delimiter: '\t'})
     .on('data', function (data) {
         // do something with the data
+        // if (data[4] == 'vls15613' && data[8] == 'apache' && data[9].indexOf('"GET /incidents/ HTTP/1.1"') != -1) {
+
+        var index = 1;
+        var options = ['config', 'incidences', 'qr', 'reports', 'charts'];
+        // var name = options[index];
         if (data[4] == 'vls15613' && data[8] == 'apache') {
-            console.log('.' + dataIdx++);
-            // console.log(data[0]);
-            // console.log(data[4] + data[8]);
-            // filtro primario solamente logs trazas del apache y del server
-            var anEvent = new Event({
-                id: data[0],
-                received_at: data[1],
-                generated_at: data[2],
-                // display_received_at: String,
-                source_id: data[3],
-                source_name: data[4],
-                source_ip: data[5],
-                program: data[6],
-                // hostname: String,
-                facility: data[7],
-                // etc
-                severity: data[8],
-                message: data[9],
-            });
+            // refactor this
+            if( data[9].indexOf('"GET /' + options[0] + '/ HTTP/1.1"') != -1
+            || data[9].indexOf('"GET /' + options[1] + '/ HTTP/1.1"') != -1
+            || data[9].indexOf('"GET /' + options[2] + '/ HTTP/1.1"') != -1
+            || data[9].indexOf('"GET /' + options[3] + '/ HTTP/1.1"') != -1
+            || data[9].indexOf('"GET /' + options[4] + '/ HTTP/1.1"') != -1) {
 
-            anEvent.save(function (err, event) {
-                if (err) return console.error(err);
-                // console.log(event);
-            });
+                console.log(" " + data + '.' + dataIdx++);
+                // console.log(data[0]);
+                // console.log(data[4] + data[8]);
+                // filtro primario solamente logs trazas del apache y del server
+                var string = data[9].split('/')[3];
+                console.log(string);
+
+                var anEvent = new Event({
+                    idx: data[0],
+                    // received_at: data[1],
+                    generated_at: data[2],
+                    // display_received_at: String,
+                    //source_id: data[3],
+                    //source_name: data[4],
+                    source_ip: data[5],
+                    program: data[6],
+                    // hostname: String,
+                    facility: data[7],
+                    // etc
+                    //severity: data[8],
+                    // message: data[9],
+                    module: string
+                });
 
 
+                 anEvent.save(function (err, event) {
+                 if (err) return console.error(err);
+                 // console.log(event);
+                 });
+
+            }
         }
 
     })
     .on('end', function () {
-        console.log("end: ") // +files[index])
+        console.log("end: "); // +files[index])
     })
     .on('finish', function () {
-        console.log("finish file: ") // + files[index]);
+        console.log("finish file: "); // + files[index]);
         // done parsing a file
     });
 
@@ -103,7 +122,7 @@ walker.on('end', function () {
 });
 
 
-var Event = mongoose.model('Event', eventSchema); // 'Event' is the collection name
+var Event = mongoose.model(schemaName, eventSchema); // 'Event' is the collection name
 mongoose.connect(constants.mongodb.nexio);
 
 var db = mongoose.connection;
@@ -138,7 +157,7 @@ db.once('open', function () {
                 callback(files, parseFiles);
                 clearInterval(itv);
             }
-        }, 3000);
+        }, 1500);
         // to speed up the process lower the virtual delay...
     }
 
