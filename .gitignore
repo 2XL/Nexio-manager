@@ -5,3 +5,5 @@ bower_components
 constants.js
 npm-debug.log
 logs
+metric
+trafic/*

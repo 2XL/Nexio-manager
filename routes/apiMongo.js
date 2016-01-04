@@ -6,7 +6,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var constants = require('../constants');
 var Event = require('../models/EventLite');
-
+var fs = require('fs');
 /*
 router.get('/', function (req, res, next) {
     console.log("mongo: API");
@@ -14,30 +14,30 @@ router.get('/', function (req, res, next) {
 });
 */
 
+
 router.get('/', function (req, res, next) {
     console.log('mongo post');
-    Event.findOne(function (err, events) {
+    Event.find(function (err, events) {
         if (err) return next(err);
-        // res.json(events.sort({id: 0})) // orted by id
-        res.json({size: events.length}); // orted by id
+         res.json(events.sort({idx: 0})) // orted by id
+        // res.json(events); // orted by id
     }); // .limit(10); // .limit
 });
 
 
-router.post('/:id', function(req, res, next){
+router.get('/:id', function(req, res, next){
     console.log('mongo post: id');
     var options = ['config', 'incidences', 'qr', 'reports','charts'];
     var name = options[req.params.id];
     console.log('mongo query '+ req.params.id, name);
-    Event.find({message: new RegExp('^'+name+'$', "i")}, function(err, events){
+    Event.find({module: name}, function(err, events){
         console.log("found: ",events.length);
         res.json(events);
-    })
+    });
 
     // visitas month
     // visitas day
     // visitas global
-
 
 });
 

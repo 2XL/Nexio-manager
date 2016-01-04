@@ -8,7 +8,7 @@ var services = angular.module(appName + 'Services', ['ngResource']);
 services.factory('Events', ['$resource',
     function ($resource) {
         console.log("factoryEvents");
-        return $resource('paper', {}, {
+        return $resource('/paper', {}, {
             query: {
                 method: 'POST',
                 params: {
@@ -19,13 +19,25 @@ services.factory('Events', ['$resource',
         });
     }]);
 
+services.factory('EventsLite', ['$resource',
+    function ($resource) {
+        console.log("factoryEventsLite");
+        return $resource('/mongo', {}, {
+            query: {
+                method: 'GET',
+                // params: {},
+                isArray: true
+            }
+        });
+    }]);
+
 services.factory('Users', ['$resource',
-    function($resource){
+    function ($resource) {
         console.log("factoryUsers");
-        return $resource('mysql', {}, {
+        return $resource('/mysql', {}, {
             query: {
                 method: 'POST',
-                params : {query : "show tables"},
+                params: {query: "show tables"},
 
             }
         })
