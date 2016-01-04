@@ -6,4 +6,4 @@ constants.js
 npm-debug.log
 logs
 metric
-trafic/*
+trafic/*.json
